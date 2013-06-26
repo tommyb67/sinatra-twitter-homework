@@ -38,17 +38,18 @@ configure do
   end
 end
 
-get '/tweets/:username' do
+
+# http://localhost:4567/tweets:username
+get '/tweets/?:username?' do
   # This gets the username from the params hash
   @username = params[:username]
 
-  # This queries Twitter's API and asks for the most recent Tweets from a user
-  # The tweets are stored in an Array called @my_tweets
-  @my_tweets = Twitter.user_timeline(@username)
-
-  # The following 3 lines will output the text from each tweet from a user
-  @my_tweets.each do |tweet|
-    tweet[:text]
+  if @username.nil?
+    @my_tweets = []
+  else
+    # This queries Twitter's API and asks for the most recent Tweets from a user
+    # The tweets are stored in an Array called @my_tweets
+    @my_tweets = Twitter.user_timeline(@username)
   end
 
   erb :tweets
