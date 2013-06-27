@@ -4,11 +4,12 @@
 <input type="text" name="username">
 <button>Submit</button>
 </form>
-
+<ul>
 <% @my_tweets.each do |tweet| %>
-<%=   tweet[:text] %>
-</form>
+  <li>
+    <a href="https://twitter.com/username/status/"<%tweet[:id]%>><%= tweet[:text] %> </a>
+    <img src="<%= tweet[:media][0][:media_url] unless tweet[:media].empty? %>">
+  </li>
 <% end %>
-
-
+</ul>
 

@@ -52,5 +52,14 @@ get '/tweets/?:username?' do
     @my_tweets = Twitter.user_timeline(@username)
   end
 
+
   erb :tweets
+
 end
+
+
+
+
+
+
+
